@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2025</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #09010c, #5e1c7c);
+            overflow: hidden;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 8rem;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px #ff0, 0 0 20px #ff0;
+            animation: glow 2s infinite;
+        }
+
+        .year {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 12rem;
+            font-weight: bold;
+            color: #00ffcc;
+            text-shadow: 0 0 15px #14be0b, 0 0 30px #00ffcc;
+            animation: pulse 1.5s infinite;
+        }
+
+        .firework, .firework-secondary {
+            position: absolute;
+            top: 10%; /* Position fireworks towards the top */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgb(109, 255, 104);
+            animation: explode 2.5s infinite ease-in-out;
+        }
+        
+
+        .firework-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none; /* Make sure fireworks don't block other elements */
+        }
+
+        .spark {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ededed, rgba(255, 255, 0, 0.5));
+            animation: sparkle 2s infinite;
+        }
+
+        .spark-secondary {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgb(218, 133, 48), rgba(255, 0, 255, 0.5));
+            animation: sparkle-secondary 2.5s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 10px #ff0, 0 0 20px #ff0;
+            }
+            50% {
+                text-shadow: 0 0 20px #f85300, 0 0 30px #ff8000;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 15px #394ab8, 0 0 30px #2e87cf;
+            }
+            50% {
+                transform: scale(1.1);
+                text-shadow: 0 0 25px #00ffcc, 0 0 50px #00ffcc;
+            }
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(-200px + 400px * var(--x)), calc(-200px + 400px * var(--y))) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sparkle-secondary {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="firework-bg" id="fireworkBg"></div>
+    <div class="container">
+        <h1>HAPPY NEW YEAR</h1>
+        <div class="year">2025</div>
+        <div id="fireworks"></div>
+    </div>
+
+    <script>
+        const container = document.querySelector("#fireworks");
+        const fireworkBg = document.querySelector("#fireworkBg");
+
+        function createFirework() {
+            const firework = document.createElement("div");
+            firework.classList.add("firework");
+            firework.style.setProperty("--x", Math.random());
+            firework.style.setProperty("--y", Math.random());
+            firework.style.top = `${20 + Math.random() * 30}%`; // Position it near the top (20% to 50%)
+            container.appendChild(firework);
+
+            setTimeout(() => {
+                firework.remove();
+            }, 1500);
+        }
+
+        function createSecondaryFirework() {
+            const fireworkSecondary = document.createElement("div");
+            fireworkSecondary.classList.add("firework-secondary");
+            fireworkSecondary.style.setProperty("--x", Math.random());
+            fireworkSecondary.style.setProperty("--y", Math.random());
+            fireworkSecondary.style.top = `${50 + Math.random() * 60}%`; // Position it near the top (20% to 50%)
+            container.appendChild(fireworkSecondary);
+
+            setTimeout(() => {
+                fireworkSecondary.remove();
+            }, 2000);
+        }
+
+        function createBackgroundSpark() {
+            const spark = document.createElement("div");
+            spark.classList.add("spark");
+            spark.style.top = `${Math.random() * 100}%`;
+            spark.style.left = `${Math.random() * 100}%`;
+            fireworkBg.appendChild(spark);
+
+            setTimeout(() => {
+                spark.remove();
+            }, 2000);
+        }
+
+        function createSecondarySpark() {
+            const sparkSecondary = document.createElement("div");
+            sparkSecondary.classList.add("spark-secondary");
+            sparkSecondary.style.top = `${Math.random() * 100}%`;
+            sparkSecondary.style.left = `${Math.random() * 100}%`;
+            fireworkBg.appendChild(sparkSecondary);
+
+            setTimeout(() => {
+                sparkSecondary.remove();
+            }, 2500);
+        }
+
+        setInterval(createSecondaryFirework, 300);
+        setInterval(createFirework, 200);
+        setInterval(createBackgroundSpark, 300);
+        setInterval(createSecondarySpark, 400);
+    </script>
+</body>
+</html>
